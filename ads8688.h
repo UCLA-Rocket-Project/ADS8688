@@ -8,9 +8,8 @@
 
 class ADS8688 {
 public:
-  ADS8688();
-  void begin(int spiMiso, int spiSclk, int spiMosi, int cs1, int cs2,
-             float vRef, uint8_t rangeSetting);
+  ADS8688(SPIClass &spi);
+  void begin(int cs1, int cs2, float vRef, uint8_t rangeSetting);
   void setInputRange(uint8_t cs, uint8_t range);
   void setAutoScanMode(uint8_t cs);
   void enableChannelsForAutoScan(uint8_t cs, uint8_t channels);
@@ -19,7 +18,7 @@ public:
   float convertToVoltage(uint16_t rawValue);
 
 private:
-  SPIClass spi = SPIClass(FSPI);
+  SPIClass *_spi;
   int _cs1, _cs2;
   float _vRef;
   uint8_t _rangeSetting;
