@@ -1,5 +1,5 @@
 
-#include "ADS8688.h"
+#include "ads8688.h"
 
 ADS8688::ADS8688(SPIClass &spi) : _spi(&spi) {}
 
